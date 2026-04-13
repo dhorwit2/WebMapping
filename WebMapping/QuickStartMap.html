@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <title>University of Oregon Mapping</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.js"></script>
+    
+
+
+          
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.css" rel="stylesheet">
+    
+
+    <style>
+           body { margin:0; padding:0; }
+     #map { position:absolute; top:0; bottom:0; width:100%; }
+        
+     #banner { z-index: 9999; 
+         background-color:white; 
+         opacity: 80%; 
+         text-align: center 
+     }
+        
+
+
+    </style>
+  </head>
+
+  <body>
+    <div id='map'></div>
+   
+     <div id='banner'>
+     		<h1>Portland Cultural Map</h1>
+     		<h2>By: David Horwitz</h2>
+ 	</div>
+
+    <script>
+           
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZGhvcndpdDIiLCJhIjoiY21udHB0c3RtMHBmODJ3b2dvZmFhamoxNyJ9.ofbvWntEfppQEeoEg2UNMQ';
+        
+        var map = new mapboxgl.Map({
+     container: 'map',
+     style: 'mapbox://styles/mapbox/standard-satellite',
+     center: [-122.6788, 45.5212],
+     zoom: 11
+ });
+        
+   
+        map.addControl(new mapboxgl.NavigationControl({
+     showCompass: false
+ }), 'bottom-left');
+        
+       var popup = new mapboxgl.Popup({ offset: 25 })
+     .setHTML('<a href="https://www.ojmche.org/visit/"target="_blank">Oregon Jewish Museum and Center for Holocaust Education</a>');
+        
+        var marker = new mapboxgl.Marker({ color: 'yellow' })
+     .setLngLat([-122.67809824558107, 45.52451705464242])
+     .setPopup(popup)
+     .addTo(map); 
+       
+        
+         var popup_layer = new mapboxgl.Popup({ closeOnClick: true, anchor: 'top-right' }) 
+     .setLngLat([-122.64, 45.5]) //popup coordinates
+     .setHTML('<a href="https://www.oregonencyclopedia.org/articles/jews-in-oregon/">Jews in Oregon</a>') 
+     .addTo(map); 
+        
+    </script>
+
+  </body>
+
+</html>
